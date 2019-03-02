@@ -7,10 +7,12 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
+<link rel="import" href="/bower_components/login-fire/login-fire-form.html" />
+<link rel="import" href="/bower_components/login-fire/login-fire-button.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html" />
-<link rel="import" href="/bower_components/login-fire/login-fire.html" /> 
 <link rel="import" href="shared-styles.html" />
+
+
 
 <dom-module id="my-view1">
   <template>
@@ -25,22 +27,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div class="circle">1</div>
       <h1>Login</h1>
- 
-      <firebase-app
-        name="login"
-        api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
-        auth-domain="convoo-login-demo.firebaseapp.com"
-        database-url="https://convoo-login-demo.firebaseio.com"
-      >
-      </firebase-app>
+            <firebase-app
+            name="button"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+          </firebase-app>
+          <firebase-app  name="email"
+          api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+          auth-domain="convoo-login-demo.firebaseapp.com"
+          database-url="https://convoo-login-demo.firebaseio.com">
+          </firebase-app>
 
-      <login-fire
-        app-name="login"
-        providers="google, github"
-        user="{{ user }}"
-        signed-in="{{ signedIn }}"
-      >
-      </login-fire>
+          <login-fire-form
+          app-name="email"
+          user="{{user}}"
+          signed-in="{{signedIn}}">
+          </login-fire-form><br>------------- Or use -------------<br>
+          <login-fire-button app-name="button" provider="google" user="{{user}}"></login-fire-button>
+          
+    
     </div>
  
   </template>
