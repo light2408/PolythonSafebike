@@ -15,7 +15,10 @@
     "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
     "polymer": "Polymer/polymer#^2.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
-    "login-fire": "^2.1.1"
+    "login-fire": "^2.1.1",
+    "google-map": "GoogleWebComponents/google-map#^2.0.5",
+    "l2t-paper-color": "^1.0.4",
+    "good-map": "keanulee/good-map#^0.0.1"
   },
   "resolutions": {
     "polymer": "^2.0.0"

@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/good-map/good-map.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -19,20 +20,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      good-map {
+  display: block;
+  height: 600px;
+}
     </style>
 
     <div class="card">
-      <div class="circle">2</div>
-      <h1>View Two</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
+        <good-map api-key="AIzaSyBSjtceEOxJ_bshCs-kjHwCd-C1eKP6pvc"
+        latitude="20"
+        longitude="-100" zoom="8"
+        map-options='{"mapTypeId": "terrain"}'></good-map>
+       </div>
   </template>
 
   <script>
+     var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 19.428528, lng: -99.206435},
+          zoom: 7
+        });
+       
+      }
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
+      //Polymer lifecycle
+      constructor() {
+          super();
+          console.log("created");
+        }
+      ready() {
+          super.ready();
+          console.log("ready");
+          
+          let myMap = this.shadowRoot.querySelector("#map");
+          
+
+          map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 19.428528, lng: -99.206435},
+          zoom: 8
+        });
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+          console.log("attached");
+        }
+
+
+
     }
+   
+
 
     window.customElements.define(MyView2.is, MyView2);
   </script>
