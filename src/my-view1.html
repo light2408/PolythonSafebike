@@ -8,8 +8,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="/bower_components/login-fire/login-fire.html" /> 
+<link rel="import" href="shared-styles.html" />
 
 <dom-module id="my-view1">
   <template>
@@ -23,15 +24,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h1>Login</h1>
+ 
+      <firebase-app
+        name="login"
+        api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+        auth-domain="convoo-login-demo.firebaseapp.com"
+        database-url="https://convoo-login-demo.firebaseio.com"
+      >
+      </firebase-app>
+
+      <login-fire
+        app-name="login"
+        providers="google, github"
+        user="{{ user }}"
+        signed-in="{{ signedIn }}"
+      >
+      </login-fire>
     </div>
+ 
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
+      static get is() {
+
+        return "my-view1";
+      }
     }
 
     window.customElements.define(MyView1.is, MyView1);
