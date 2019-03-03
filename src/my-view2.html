@@ -10,9 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/good-map/good-map.html">
-<link rel="import" href="../bower_components/google-map/google-map-search.html">
-<link rel="import" href="../bower_components/google-map/google-map-marker.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
  
 <link rel="import" href="shared-styles.html">
 
@@ -28,34 +26,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   display: block;
   height: 600px;
 }
+
     </style>
 
     <div class="card">
       <h3>Coloca en el area del mapa el punto conflictivo</h3>
-        <good-map api-key="AIzaSyBSjtceEOxJ_bshCs-kjHwCd-C1eKP6pvc"
+        <good-map id="mapa" api-key="AIzaSyBSjtceEOxJ_bshCs-kjHwCd-C1eKP6pvc"
         latitude="19.428528"
         longitude="-99.206435" zoom="13" title="Puntos Conflictivos en Ciudad de Mexico"
-        map-options='{"mapTypeId"}'></good-map>
+        map-options='{"mapTypeId"}' >
+      </good-map>
        </div>
   </template>
 
   <script>
 
-    var marker;
+   
 
-     var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 19.428528, lng: -99.206435},
-          zoom: 9
-        });
-      }
+    //  var map;
+    //   function initMap() {
+    //     map = new google.maps.Map(document.getElementById('map'), {
+    //       center: {lat: 19.428528, lng: -99.206435},
+    //       zoom: 9
+    //     });
+    //   }
       
+      //var marker = new google.maps.Marker({position:center, map: map});
      
         
       
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
+
+      static get properties(){
+        return {
+          markers: {
+            type: Array,
+            value: [],
+            notify: true,
+            observer: '_hadleMarkers'
+          }
+        };
+      }
       //Polymer lifecycle
       constructor() {
           super();
@@ -68,18 +80,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           let myMap = this.shadowRoot.querySelector("#map");
           
 
-          map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 19.428528, lng: -99.206435},
-          zoom: 8
+        //   let map = new google.maps.Map(document.getElementById('map'), {
+        //   center: {lat: 19.428528, lng: -99.206435},
+        //   zoom: 8
+        // });
+        //   let marker = new google.maps.Marker({position:center, map: map});
+        this.$.mapa.addEventListener('google-map-ready', () => {
+          []
+          let marker2 = new google.maps.Marker({position:{lat: 19.4285245, lng: -99.206489}, map: this.$.mapa.map});
+          
+          google.maps.event.addListener(this.$.mapa.map, "click", e=>{
+            //let markers = Object.assign(this.markers, []);
+            let marker = new google.maps.Marker({position:{lat:e.latLng.lat(), lng:e.latLng.lng()}, map: this.$.mapa.map});
+            //console.log(markers);
+            //this.set('markers', markers);
+          });
         });
         }
 
-        connectedCallback() {
-          super.connectedCallback();
-          console.log("attached");
+        _hadleMarkers(markers){
+          console.log(markers);
+          markers.forEach(m=>{
+            let mak = new google.maps.Marker({position:m, map: this.$.mapa.map});
+          })
         }
-
-
 
     }
    
