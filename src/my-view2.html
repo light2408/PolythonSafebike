@@ -36,6 +36,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         longitude="-99.206435" zoom="13" title="Puntos Conflictivos en Ciudad de Mexico"
         map-options='{"mapTypeId"}' >
       </good-map>
+      <div id="popup">
+        Nuevo punto de riesgo
+      </div>
        </div>
   </template>
 
@@ -86,12 +89,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // });
         //   let marker = new google.maps.Marker({position:center, map: map});
         this.$.mapa.addEventListener('google-map-ready', () => {
-          []
-          let marker2 = new google.maps.Marker({position:{lat: 19.4285245, lng: -99.206489}, map: this.$.mapa.map});
           
+          //let marker2 = new google.maps.Marker({position:{lat: 19.4285245, lng: -99.206489}, map: this.$.mapa.map});
+          let popUpContent = `<div>nuevo putnto de riesgo</div>`;
+          const infoWidow = new google.maps.InfoWindow({content: popUpContent});
           google.maps.event.addListener(this.$.mapa.map, "click", e=>{
             //let markers = Object.assign(this.markers, []);
             let marker = new google.maps.Marker({position:{lat:e.latLng.lat(), lng:e.latLng.lng()}, map: this.$.mapa.map});
+            infoWidow.open(this.$.mapa.map, marker);
             //console.log(markers);
             //this.set('markers', markers);
           });
@@ -102,6 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           console.log(markers);
           markers.forEach(m=>{
             let mak = new google.maps.Marker({position:m, map: this.$.mapa.map});
+            
           })
         }
 
