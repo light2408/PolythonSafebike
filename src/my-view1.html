@@ -50,13 +50,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 </style>
 
+<div class="card">
+  <div class="header"><h1>Login</h1></div>
+  
+  <div>
+    <firebase-app
+    auth-domain="safebike-76cfa.firebaseapp.com"
+    database-url="https://safebike-76cfa.firebaseio.com/"
+    api-key="AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M"
+    storage-bucket="safebike-76cfa.appspot.com"
+    messaging-sender-id="756378587211"
+  >
+  </firebase-app> 
+
+ <div>
+  
+  <login-fire-button app-name="button" provider="google"on-click="onButtonClick"></login-fire-button>
+ </div>
+  <firebase-auth
+    id="auth"
+    user="{{ user }}"
+    provider="google"
+    on-error="(handleError)"
+  >
+  </firebase-auth> 
+  
+</div>
+
+</div>
 
 <!-- 
 <paper-button raised on-click="this.$.animated.open()">Login</paper-button>
 <paper-dialog id="animated" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop> -->
-  <h2>Login</h2>
+ <!--  <h2>Login</h2>
   
-  <div>
+  <div class>
      <firebase-app
         auth-domain="safebike-76cfa.firebaseapp.com"
         database-url="https://safebike-76cfa.firebaseio.com/"
@@ -76,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     >
     </firebase-auth>
 
-  </div>
+  </div> -->
 <!-- </paper-dialog> -->
 
   
