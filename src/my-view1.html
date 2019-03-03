@@ -11,10 +11,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html" />
 
 <!-- <link rel="import" href="/bower_components/login-fire/login-fire-form.html" /> -->
-<link rel="import" href="/bower_components/login-fire/login-fire-button.html">
+<link rel="import" href="../bower_components/login-fire/login-fire-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/neon-animation/web-animations.html">
+ <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
 
-
- 
 <link rel="import" href="../bower_components/polymer/polymer-element.html" />
 
 <link rel="import" href="shared-styles.html" />
@@ -30,44 +32,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       div{
         text-align: center;
       }
-    </style>
-
-    <div class="card">
-      <div class="header"><h1>Login</h1></div>
       
+        paper-dialog.colored {
+          border: 2px solid;
+          border-color: #4caf50;
+          background-color: #f1f8e9;
+          color: #4caf50;
+        }
+
+        paper-dialog.size-position {
+          position: fixed;
+          top: 16px;
+          right: 16px;
+          width: 300px;
+          height: 300px;
+          overflow: auto;
+  }
+</style>
+
+
+
+<paper-button raised onclick="this.$.animated.open()">Login</paper-button>
+<paper-dialog id="animated" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+  <h2>Login</h2>
+  
   <div>
-            <firebase-app
+     <firebase-app
         auth-domain="safebike-76cfa.firebaseapp.com"
         database-url="https://safebike-76cfa.firebaseio.com/"
         api-key="AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M"
         storage-bucket="safebike-76cfa.appspot.com"
         messaging-sender-id="756378587211"
-      >
-      </firebase-app> 
-        <!--  
-    
-      <firebase-app
-        apiKey= "AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M",
-        authDomain= "safebike-76cfa.firebaseapp.com",
-        databaseURL= "https://safebike-76cfa.firebaseio.com",
-        projectId= "safebike-76cfa",
-        storageBucket= "safebike-76cfa.appspot.com",
-        messagingSenderId= "756378587211"
-      >
-      </firebase-app>   -->
+    >
+    </firebase-app> 
 
-      <login-fire-button app-name="button" provider="google"on-click="onButtonClick"></login-fire-button>
-     <!--  <button on-click="onButtonClick">Sign in with google</button> -->
-      <firebase-auth
+    <login-fire-button app-name="button" provider="google"on-click="onButtonClick"></login-fire-button>
+
+    <firebase-auth
         id="auth"
         user="{{ user }}"
         provider="google"
         on-error="(handleError)"
-      >
-      </firebase-auth>
-    </div>
+    >
+    </firebase-auth>
+
+  </div>
+</paper-dialog>
+
   
-    </div>
   </template>
 
   <script>
@@ -92,15 +104,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         onButtonClick() {
           this.$.auth.signInWithPopup()
             .then( response => {
-              /* console.log('Nueva', response);
-              this.dispatchEvent(
-                new CustomEvent('navigate', { 
-                  detail: { page: 'view2' } 
-                })
-              ); */
+
               this.set('page', 'view2')
             })
-            /* this.dispatchEvent (new CustomEvent('navigate', {detail: {page: view2}}));  ) }) */
             .catch(function (error) { console.log(error) });
         }
 
