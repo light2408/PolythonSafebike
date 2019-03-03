@@ -10,6 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/good-map/good-map.html">
+<link rel="import" href="bower_components/google-map/google-map-search.html">
+<link rel="import" href="bower_components/google-map/google-map-marker.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+ 
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -27,15 +31,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
+        <paper-input
+        label="search a place!"
+        type="search"
+        value="{{search::input}}"
+        placeholder="search place"
+        results="5">
+   </paper-input>
+
+   <google-map-search map="{{map}}" query="{{search}}" results="{{results}}">
+    </google-map-search>
       <h3>Coloca en el area del mapa el punto conflictivo</h3>
         <good-map api-key="AIzaSyBSjtceEOxJ_bshCs-kjHwCd-C1eKP6pvc"
         latitude="19.428528"
         longitude="-99.206435" zoom="11" title="Puntos Conflictivos en Ciudad de Mexico"
-        map-options='{"mapTypeId": "terrain"}'></good-map>
+        map-options='{"mapTypeId"}'></good-map>
        </div>
   </template>
 
   <script>
+
+    var marker;
+
      var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
