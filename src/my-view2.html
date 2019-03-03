@@ -22,6 +22,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+     
+      .popAlert {
+         display: block;
+         color: #fff;
+        text-align: center;
+        border-radius: 2%;
+        background: #f00;
+/*        border: 5px;
+        border-color: #000;
+         font-size: 30px;
+        line-height: 64px; */
+      }
+
       good-map {
   display: block;
   height: 600px;
@@ -37,7 +50,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         map-options='{"mapTypeId"}' >
       </good-map>
       <div id="popup">
-        Nuevo punto de riesgo
+        ¡Cuidado! <br>
+        ¡Nuevo punto de riesgo!
       </div>
        </div>
   </template>
@@ -91,7 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.mapa.addEventListener('google-map-ready', () => {
           
           //let marker2 = new google.maps.Marker({position:{lat: 19.4285245, lng: -99.206489}, map: this.$.mapa.map});
-          let popUpContent = `<div>nuevo putnto de riesgo</div>`;
+          let popUpContent = `<div class="popAlert">¡Cuidado! <br> ¡Nuevo punto de riesgo!</div>`;
           const infoWidow = new google.maps.InfoWindow({content: popUpContent});
           google.maps.event.addListener(this.$.mapa.map, "click", e=>{
             //let markers = Object.assign(this.markers, []);

@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html" />
 
 <!-- <link rel="import" href="/bower_components/login-fire/login-fire-form.html" /> -->
-<link rel="import" href="/bower_components/login-fire/login-fire-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html"/>
 
 
  
@@ -30,29 +30,72 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       div{
         text-align: center;
       }
+      paper-button.custom {
+      --paper-button-ink-color: var(--paper-pink-a200);
+      /* These could also be individually defined for each of the
+        specific css classes, but we'll just do it once as an example */
+      --paper-button-flat-keyboard-focus: {
+        background-color: var(--paper-pink-a200) !important;
+        color: white !important;
+      };
+      --paper-button-raised-keyboard-focus: {
+        background-color: var(--paper-pink-a200) !important;
+        color: white !important;
+      };
+    }
+    paper-button.custom:hover {
+      background-color: var(--paper-red-800);
+    }
+    paper-button.pink {
+      color: var(--paper-pink-a200);
+
+    }
+    paper-button.indigo {
+      background-color: var(--paper-indigo-500);
+      color: white;
+      --paper-button-raised-keyboard-focus: {
+        background-color: var(--paper-pink-a200) !important;
+        color: white !important;
+      };
+    }
+    paper-button.red {
+      background-color: var(--paper-red-500);
+      color: white;
+    }
+    paper-button.green[active] {
+      background-color: var(--paper-red-00);
+    }
+    paper-button.disabled {
+      color: white;
+      background-color: bisque;
+    }
     </style>
 
     <div class="card">
       <div class="header"><h1>Close Session</h1></div>
       
       <div>
-          <firebase-app
+        <firebase-app
         auth-domain="safebike-76cfa.firebaseapp.com"
         database-url="https://safebike-76cfa.firebaseio.com/"
         api-key="AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M"
         storage-bucket="safebike-76cfa.appspot.com"
         messaging-sender-id="756378587211"
       >
-      </firebase-app>
-    <!--  <login-fire-button app-name="button" on-click="onButtonClick"></login-fire-button>-->
-       <button on-click="onButtonClick">Exit</button>
-     <firebase-auth
+      </firebase-app> 
+ 
+     <div>
+
+       <paper-button on-click="onButtonClick" class="custom red" >Exit</paper-button>
+
+     </div>
+      <firebase-auth
         id="auth"
         user="{{ user }}"
         provider="google"
         on-error="(handleError)"
       >
-      </firebase-auth>
+      </firebase-auth> 
     </div>
   
     </div>
