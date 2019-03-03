@@ -32,4 +32,4 @@ routing for the app:
     polymer serve
 
 # IMPRESIONANTI!!!!
-<img src:"https://i.makeagif.com/media/7-30-2015/hinh_f.gif">
+<img src:"https://i.makeagif.com/media/7-30-2015/hinh_f.gif"/>
