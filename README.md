@@ -33,7 +33,7 @@ routing for the app:
 
 # IMPRESIONANTI!!!!
 
-<a href="https://i.makeagif.com/media/7-30-2015/hinh_f.gif""></a>
+<a href="https://i.makeagif.com/media/7-30-2015/hinh_f.gif"></a>
 
 
 
