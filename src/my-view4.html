@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="shared-styles.html" />
 
-<dom-module id="my-view1">
+<dom-module id="my-view4">
   <template>
     <style include="shared-styles">
       :host {
@@ -33,10 +33,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="header"><h1>Login</h1></div>
+      <div class="header"><h1>Close Session</h1></div>
       
       <div>
-            <firebase-app
+          <firebase-app
         auth-domain="safebike-76cfa.firebaseapp.com"
         database-url="https://safebike-76cfa.firebaseio.com/"
         api-key="AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M"
@@ -44,9 +44,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         messaging-sender-id="756378587211"
       >
       </firebase-app>
-      <login-fire-button app-name="button" provider="google"on-click="onButtonClick"></login-fire-button>
-     <!--  <button on-click="onButtonClick">Sign in with google</button> -->
-      <firebase-auth
+    <!--  <login-fire-button app-name="button" on-click="onButtonClick"></login-fire-button>-->
+       <button on-click="onButtonClick">Exit</button>
+     <firebase-auth
         id="auth"
         user="{{ user }}"
         provider="google"
@@ -59,9 +59,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class MyView1 extends Polymer.Element {
+    class MyView4 extends Polymer.Element {
         static get is() {
-          return "my-view1";
+          return "my-view4";
         }
         
         static get properties() {
@@ -78,22 +78,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         onButtonClick() {
-          this.$.auth.signInWithPopup()
-            .then( response => {
-              /* console.log('Nueva', response);
-              this.dispatchEvent(
-                new CustomEvent('navigate', { 
-                  detail: { page: 'view2' } 
-                })
-              ); */
-              this.set('page', 'view2')
+          this.$.auth.signOut()
+            .then( response => {        
+              this.set('page', 'view1')
             })
-            /* this.dispatchEvent (new CustomEvent('navigate', {detail: {page: view2}}));  ) }) */
             .catch(function (error) { console.log(error) });
         }
 
       }
 
-      window.customElements.define(MyView1.is, MyView1);
+      window.customElements.define(MyView4.is, MyView4);
   </script>
 </dom-module>
