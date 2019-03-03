@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div class="header"><h1>Login</h1></div>
       
-      <div>
+  <div>
             <firebase-app
         auth-domain="safebike-76cfa.firebaseapp.com"
         database-url="https://safebike-76cfa.firebaseio.com/"
@@ -43,7 +43,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         storage-bucket="safebike-76cfa.appspot.com"
         messaging-sender-id="756378587211"
       >
-      </firebase-app>
+      </firebase-app> 
+        <!--  
+    
+      <firebase-app
+        apiKey= "AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M",
+        authDomain= "safebike-76cfa.firebaseapp.com",
+        databaseURL= "https://safebike-76cfa.firebaseio.com",
+        projectId= "safebike-76cfa",
+        storageBucket= "safebike-76cfa.appspot.com",
+        messagingSenderId= "756378587211"
+      >
+      </firebase-app>   -->
+
       <login-fire-button app-name="button" provider="google"on-click="onButtonClick"></login-fire-button>
      <!--  <button on-click="onButtonClick">Sign in with google</button> -->
       <firebase-auth
