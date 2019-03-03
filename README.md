@@ -31,5 +31,5 @@ routing for the app:
 
     polymer serve
 
-# IMPRESIONANTI ENJOY :bang: :bang:
+# IMPRESIONANTI!!!!
 
