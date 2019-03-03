@@ -7,12 +7,17 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="/bower_components/login-fire/login-fire-form.html" />
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html" />
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html" />
+
+<!-- <link rel="import" href="/bower_components/login-fire/login-fire-form.html" />
 <link rel="import" href="/bower_components/login-fire/login-fire-button.html">
+
+ -->
+ 
 <link rel="import" href="../bower_components/polymer/polymer-element.html" />
+
 <link rel="import" href="shared-styles.html" />
-
-
 
 <dom-module id="my-view1">
   <template>
@@ -25,40 +30,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <h1>Login</h1>
-            <firebase-app
-            name="button"
+      <div class="header"><h1>Login</h1></div>
+      <hr />
+      <!-- <div class="card2">
+             <firebase-app  name="email"
             api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
             auth-domain="convoo-login-demo.firebaseapp.com"
             database-url="https://convoo-login-demo.firebaseio.com">
-          </firebase-app>
-          <firebase-app  name="email"
-          api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
-          auth-domain="convoo-login-demo.firebaseapp.com"
-          database-url="https://convoo-login-demo.firebaseio.com">
-          </firebase-app>
+            </firebase-app>
 
-          <login-fire-form
-          app-name="email"
-          user="{{user}}"
-          signed-in="{{signedIn}}">
-          </login-fire-form><br>------------- Or use -------------<br>
-          <login-fire-button app-name="button" provider="google" user="{{user}}"></login-fire-button>
-          
-    
+            <login-fire-form
+            app-name="email"
+            user="{{user}}"
+            signed-in="{{signedIn}}">
+            </login-fire-form>
+            <br>------------- Or use -------------<br>
+            <login-fire-button app-name="button" provider="google" user="{{user}}"></login-fire-button>
+       
+      </div> -->
+
+      <firebase-app
+        auth-domain="safebike-76cfa.firebaseapp.com"
+        database-url="https://safebike-76cfa.firebaseio.com/"
+        api-key="AIzaSyBm9AVSAJ0Ds6GHk2w6_2OB9m-cD45hh_M"
+        storage-bucket="safebike-76cfa.appspot.com"
+        messaging-sender-id="756378587211"
+      >
+      </firebase-app>
+      
+      <button on-click="onButtonClick">Sign in with google</button>
+      <firebase-auth
+        id="auth"
+        user="{{ user }}"
+        provider="google"
+        on-error="(handleError)"
+      >
+      </firebase-auth>
     </div>
- 
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
-      static get is() {
+        static get is() {
+          return "my-view1";
+        }
+        
+        static get properties() {
+          return {
+            page: {
+              type: String,
+              notify: true
+            }
+          }
+        }
+        
+        constructor() {
+          super();
+        }
 
-        return "my-view1";
+        onButtonClick() {
+          this.$.auth.signInWithPopup()
+            .then( response => {
+              console.log('Nueva', response);
+              /* this.dispatchEvent(
+                new CustomEvent('navigate', { 
+                  detail: { page: 'view2' } 
+                })
+              ); */
+              this.set('page', 'view2')
+            })
+            /* this.dispatchEvent (new CustomEvent('navigate', {detail: {page: view2}}));  ) }) */
+            .catch(function (error) { console.log(error) });
+        }
+
       }
-    }
 
-    window.customElements.define(MyView1.is, MyView1);
+      window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>

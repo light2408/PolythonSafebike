@@ -8,8 +8,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="shared-styles.html" />
 
 <dom-module id="my-view3">
   <template>
@@ -24,20 +24,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div class="circle">3</div>
       <h1>View Three</h1>
-      <google-map latitude="37.77493" longitude="-122.41942">
-        <google-map-poly closed fill-color="blue" fill-opacity=".5">
-          <google-map-point latitude="36.77493" longitude="-121.41942"></google-map-point>
-          <google-map-point latitude="38.77493" longitude="-122.41942"></google-map-point>
-          <google-map-point latitude="36.77493" longitude="-123.41942"></google-map-point>
-        </google-map-poly>
-      </google-map>
-      map
+   
     </div>
   </template>
 
   <script>
     class MyView3 extends Polymer.Element {
-      static get is() { return 'my-view3'; }
+      static get is() {
+        return "my-view3";
+      }
     }
 
     window.customElements.define(MyView3.is, MyView3);

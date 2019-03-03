@@ -1,0 +1,89 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html" />
+<link rel="import" href="shared-styles.html" />
+<link rel="import" href="/bower_components/login-fire/login-fire-form.html" />
+<link rel="import" href="/bower_components/login-fire/login-fire-button.html">
+
+<dom-module id="my-login">
+  <template>
+    </style>
+        <style include="shared-styles">
+          :host {
+            display: block;
+            padding: 10px;
+          };
+          .card2 {
+            padding: 50px;
+          }
+        </style>
+    
+        <div class="card">
+          <div class="header"><h1>Login</h1></div>
+          <hr>
+          <div class="card2">
+                 <firebase-app  name="email"
+                api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+                auth-domain="convoo-login-demo.firebaseapp.com"
+                database-url="https://convoo-login-demo.firebaseio.com">
+                </firebase-app>
+
+                <login-fire-form
+                app-name="email"
+                user="{{user}}"
+                signed-in="{{signedIn}}">
+                </login-fire-form>
+                <br>------------- Or use -------------<br>
+                <login-fire-button app-name="button" provider="google" user="{{user}}"></login-fire-button>
+           
+          </div>
+           
+        </div>
+        
+        
+      </template>
+
+  <script>
+    /**
+     * `LowerCaseDashedName` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class MyLogin extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return "my-login";
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {};
+      }
+
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized.
+       */
+      ready() {
+        super.ready();
+
+        Polymer.RenderStatus.afterNextRender(this, function() {});
+      }
+    }
+
+    window.customElements.define(MyLogin.is, MyLogin);
+  </script>
+</dom-module>
